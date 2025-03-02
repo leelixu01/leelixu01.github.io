@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>CSAPP 01 Datalab | Silly blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">silly&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">silly&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">CSAPP 01 Datalab</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 27, 2023&nbsp;&nbsp;13:44:48</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Datalab-Summary"><a href="#Datalab-Summary" class="headerlink" title="Datalab Summary"></a>Datalab Summary</h2><p>第一个lab总体来说不算难，但有几道题需要一些小技巧，不知道的话很难想出来。</p>
+<h3 id="1、bitXor"><a href="#1、bitXor" class="headerlink" title="1、bitXor"></a>1、bitXor</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">要求：实现异或</span><br><span class="line">分析：采用德摩根律即可</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bitXor</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~((~x)&amp;(~y))&amp;(~(x&amp;y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、tmin"><a href="#2、tmin" class="headerlink" title="2、tmin"></a>2、tmin</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要求；返回Tmin</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">tmin</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>&lt;&lt;<span class="number">31</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、isTmax"><a href="#3、isTmax" class="headerlink" title="3、isTmax"></a>3、isTmax</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">要求：如果是Tmax，则返回<span class="number">1</span></span><br><span class="line">分析：tmax<span class="number">+1</span>再取反为tmax本身，另外<span class="number">-1</span>也符合此情况，需将<span class="number">-1</span>排除</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">isTmax</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !(~(x<span class="number">+1</span>)^x)&amp;!!(x<span class="number">+1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、allOddBits"><a href="#4、allOddBits" class="headerlink" title="4、allOddBits"></a>4、allOddBits</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">要求：当所有奇数位为<span class="number">1</span>时返回<span class="number">1</span></span><br><span class="line">分析：先取所有奇数位，再与<span class="number">0xAAAAAAAA</span>相异或</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">allOddBits</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !((x&amp;(<span class="number">0xAAAAAAAA</span>))^(<span class="number">0xAAAAAAAA</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、negate"><a href="#5、negate" class="headerlink" title="5、negate"></a>5、negate</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要求：返回-x</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">negate</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (~x)<span class="number">+1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、isAsciiDigit"><a href="#6、isAsciiDigit" class="headerlink" title="6、isAsciiDigit"></a>6、isAsciiDigit</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">要求：<span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> <span class="number">0x30</span> &lt;= x &lt;= <span class="number">0x39</span></span><br><span class="line">分析：</span><br><span class="line"><span class="number">1</span>、x前<span class="number">26</span>位为<span class="number">0</span></span><br><span class="line"><span class="number">2</span>、x的第<span class="number">27</span><span class="number">-28</span>位为<span class="number">11</span></span><br><span class="line"><span class="number">3</span>、x的末<span class="number">4</span>位减<span class="number">0xA</span>为负值</span><br><span class="line">代码：</span><br><span class="line"><span class="type">int</span> <span class="built_in">isAsciiDigit</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">     <span class="type">int</span> a = !(x &gt;&gt; <span class="number">6</span>);</span><br><span class="line">     <span class="type">int</span> b = !((x &gt;&gt; <span class="number">4</span>) ^ (<span class="number">0b11</span>));</span><br><span class="line">     <span class="type">int</span> c = <span class="number">0xF</span> &amp; x;</span><br><span class="line">     <span class="type">int</span> d = ((~<span class="number">0xA</span>) + <span class="number">1</span>) + c;</span><br><span class="line">     <span class="type">int</span> e = !!(d &gt;&gt; <span class="number">31</span>);</span><br><span class="line">  <span class="keyword">return</span> a &amp; b &amp; e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7、conditional"><a href="#7、conditional" class="headerlink" title="7、conditional"></a>7、conditional</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">要求：实现x ? y : z</span><br><span class="line">分析：x为非<span class="number">0</span>取值y，x为<span class="number">0</span>取值z</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">conditional</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> mask = (!!x) &lt;&lt; <span class="number">31</span> &gt;&gt; <span class="number">31</span>;</span><br><span class="line">        <span class="keyword">return</span> (mask &amp; y) | (~mask &amp; z);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8、isLessOrEqual"><a href="#8、isLessOrEqual" class="headerlink" title="8、isLessOrEqual"></a>8、isLessOrEqual</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">要求：当x&lt;=y时返回<span class="number">1</span>，否则返回<span class="number">0</span></span><br><span class="line">分析：当x和y异号时，x必须为负，当x和y同号时，y-x必须&gt;=<span class="number">0</span></span><br><span class="line">代码：</span><br><span class="line"><span class="type">int</span> <span class="built_in">isLessOrEqual</span>(<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">        <span class="type">int</span> sx = x &gt;&gt; <span class="number">31</span>;</span><br><span class="line">        <span class="type">int</span> sy = y &gt;&gt; <span class="number">31</span>;</span><br><span class="line">        <span class="type">int</span> dif = sx ^ sy;</span><br><span class="line">        <span class="type">int</span> sub = (~x<span class="number">+1</span>)+y;</span><br><span class="line">        <span class="keyword">return</span> (((!dif&amp;!(sub &gt;&gt; <span class="number">31</span>))|(dif&amp;sx))) &amp; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9、logicalNeg"><a href="#9、logicalNeg" class="headerlink" title="9、logicalNeg"></a>9、logicalNeg</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">要求：实现！运算符</span><br><span class="line">分析：这里需要一个小技巧：只有当x=<span class="number">0</span>时，x和-x的符号位相同且为<span class="number">0</span></span><br><span class="line">代码：</span><br><span class="line">    <span class="type">int</span> <span class="built_in">logicalNeg</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">        <span class="built_in">return</span> (~((~x<span class="number">+1</span>)|x)&gt;&gt;<span class="number">31</span>)&amp;<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="10、howManyBits"><a href="#10、howManyBits" class="headerlink" title="10、howManyBits"></a>10、howManyBits</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">要求：返回表示一个数所用的补码的最少位数</span><br><span class="line">分析：如果是正数，则为最左侧<span class="number">1</span>的位数加<span class="number">1</span>，如果是负数，则将它反转后采用同样的方法</span><br><span class="line">代码：</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">howManyBits</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> mask = x &gt;&gt; <span class="number">31</span>;</span><br><span class="line">        x = (mask&amp;(~x))|(~mask&amp;x);<span class="comment">//实现负数反转功能</span></span><br><span class="line">        <span class="comment">//以下为一个取各个位置的小技巧</span></span><br><span class="line">    	<span class="type">int</span> b16,b8,b4,b2,b1,b0;</span><br><span class="line">        b16 = !!(x &gt;&gt; <span class="number">16</span>) &lt;&lt; <span class="number">4</span>;</span><br><span class="line">        x &gt;&gt;= b16;</span><br><span class="line">        b8 = !!(x &gt;&gt; <span class="number">8</span>) &lt;&lt; <span class="number">3</span>;</span><br><span class="line">        x &gt;&gt;= b8;</span><br><span class="line">        b4 = !!(x &gt;&gt; <span class="number">4</span>) &lt;&lt; <span class="number">2</span>;</span><br><span class="line">        x &gt;&gt;= b4;</span><br><span class="line">        b2 = !!(x &gt;&gt; <span class="number">2</span>) &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        x &gt;&gt;= b2;</span><br><span class="line">        b1 = !!(x &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        x &gt;&gt;= b1;</span><br><span class="line">        b0 = x;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + b0 + b1 + b2 + b4 + b8 + b16;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="11、floatScale2"><a href="#11、floatScale2" class="headerlink" title="11、floatScale2"></a>11、floatScale2</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">要求：返回<span class="number">2</span>*f</span><br><span class="line">分析：</span><br><span class="line">	当exp = <span class="number">0xff</span>时（数为NAN或无穷大），返回原值;</span><br><span class="line">	当exp为<span class="number">0</span>时，返回非规格化值</span><br><span class="line">	当exp为其他时，返回规格化值</span><br><span class="line">代码：</span><br><span class="line">        <span class="function"><span class="type">unsigned</span> <span class="title">floatScale2</span><span class="params">(<span class="type">unsigned</span> uf)</span> </span>&#123;</span><br><span class="line">        <span class="type">unsigned</span> s = (uf &gt;&gt; <span class="number">31</span>) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="type">unsigned</span> exp = (uf &gt;&gt; <span class="number">23</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">        <span class="type">unsigned</span> frac = uf &amp; <span class="number">0x7fffff</span>;</span><br><span class="line">        <span class="type">unsigned</span> res;</span><br><span class="line">        <span class="keyword">if</span> (exp == <span class="number">0xff</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> uf;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (exp == <span class="number">0</span>) &#123;</span><br><span class="line">                frac &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">                res = (s &lt;&lt; <span class="number">31</span>) | (exp &lt;&lt; <span class="number">23</span>) | frac;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                exp++;</span><br><span class="line">                res = (s &lt;&lt; <span class="number">31</span>) | (exp &lt;&lt; <span class="number">23</span>) | frac;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="12、floatFloat2Int"><a href="#12、floatFloat2Int" class="headerlink" title="12、floatFloat2Int"></a>12、floatFloat2Int</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">要求：返回<span class="type">float</span>转换的<span class="type">int</span>形式</span><br><span class="line">分析：</span><br><span class="line">	当E &gt;= <span class="number">31</span>时，返回<span class="number">0x80000000u</span>;</span><br><span class="line">	当E &lt; <span class="number">0</span>时，返回<span class="number">0</span>;</span><br><span class="line">	当<span class="number">0</span> &lt;= E &lt; <span class="number">31</span>时，转换成<span class="type">int</span>形式;</span><br><span class="line">代码：</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">floatFloat2Int</span><span class="params">(<span class="type">unsigned</span> uf)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> s = (uf &gt;&gt; <span class="number">31</span>) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="type">unsigned</span> exp = (uf &gt;&gt; <span class="number">23</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">        <span class="type">unsigned</span> frac = uf &amp; <span class="number">0x7fffff</span>;</span><br><span class="line">        <span class="type">int</span> E = exp - <span class="number">127</span>;</span><br><span class="line">        <span class="keyword">if</span> (E &gt;= <span class="number">31</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0x80000000u</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (E &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                frac = frac | (<span class="number">1</span> &lt;&lt; <span class="number">23</span>);<span class="comment">//将frac还原成1.xxx形式</span></span><br><span class="line">                <span class="comment">//当E &lt; 23时，需要右移舍入</span></span><br><span class="line">            	<span class="keyword">if</span> (E &lt; <span class="number">23</span>) &#123;</span><br><span class="line">                        frac &gt;&gt;= (<span class="number">23</span> - E);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        frac &lt;&lt;= (E - <span class="number">23</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (s == <span class="number">0</span>) <span class="keyword">return</span> frac;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">return</span> -frac;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="13、floatPower2"><a href="#13、floatPower2" class="headerlink" title="13、floatPower2"></a>13、floatPower2</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">要求：返回<span class="number">2</span>^x次方的<span class="type">float</span>表示（用<span class="type">unsigned</span>返回）</span><br><span class="line">分析：</span><br><span class="line">    x &gt; <span class="number">127</span>时，返回+INF;</span><br><span class="line">    <span class="number">-126</span> &lt;= x &lt; <span class="number">127</span>时，返回规格化数;</span><br><span class="line">    <span class="number">-147</span> &lt;= x &lt; <span class="number">-126</span>时，返回非规格化数;</span><br><span class="line">    x &lt;= <span class="number">-148</span>时，返回<span class="number">0</span>;</span><br><span class="line">代码：</span><br><span class="line">    <span class="function"><span class="type">unsigned</span> <span class="title">floatPower2</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &gt; <span class="number">127</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0xff</span> &lt;&lt; <span class="number">23</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (x &gt;= <span class="number">-126</span>) &#123;</span><br><span class="line">            <span class="type">int</span> exp = x + <span class="number">127</span>;</span><br><span class="line">            <span class="keyword">return</span> exp &lt;&lt; <span class="number">23</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (x &gt;= <span class="number">-147</span>) &#123;</span><br><span class="line">            <span class="type">int</span> t = <span class="number">148</span> + x;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> &lt;&lt; t;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2023/05/27/CSAPP-01-Datalab/">http://example.com/2023/05/27/CSAPP-01-Datalab/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2023/05/31/CSAPP-02-Bomblab/">CSAPP 02 Bomblab</a>
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©  | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
